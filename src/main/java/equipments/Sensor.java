@@ -1,5 +1,7 @@
 package equipments;
 
-public interface Sensor extends Equip {
-    double getData();
+import base.Component;
+
+public class Sensor extends AbstractComponent {
+
 }
