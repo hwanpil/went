@@ -11,6 +11,9 @@ thermodynamics and so on. Thus, It is exciting to do such a side project to help
 Due to the limitation of time and coding ability, this project is updated slowly and only for fun, 
 so if you want something suitable for business or academic modelling, Aspen plus is always a better choice:)
 
+## Some design notes
++ Every component is only responsible for its up stream not for its down stream.
+
 ## To-do list
 - [x] General idea of abstraction
 - [x] Mixing ideal liquid (single phase and pure substance)

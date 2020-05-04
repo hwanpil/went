@@ -1,21 +1,16 @@
 package equipments;
 
+import base.AbstractComponent;
 import base.Component;
-import base.Resource;
 import materials.Fluid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class Repository implements Component {
-
-    Fluid fluid;
-    Component downStream;
-
-    public Repository(Fluid fluid, Component downStream) {
-        this.fluid = fluid;
-        this.downStream = downStream;
-    }
+public class Repository extends AbstractComponent implements Component {
+    private static Logger LOGGER = LoggerFactory.getLogger(Repository.class);
 
     public Repository(Fluid fluid) {
-        this(fluid, null);
+        this.fluid = fluid;
     }
 
     @Override
@@ -23,24 +18,7 @@ public class Repository implements Component {
         return null;
     }
 
-    @Override
-    public Component to(Component next) {
-        downStream = next;
-        next.from(this);
-        return this;
-    }
-
-    @Override
-    public Fluid getFluid() {
-        return fluid;
-    }
-
-    @Override
-    public void setFluid(Fluid fluid) {
-        this.fluid = fluid;
-    }
-
-    @Override
     public void run() {
+        LOGGER.info("Repo is ready to use!");
     }
 }

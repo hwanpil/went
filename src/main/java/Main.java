@@ -1,7 +1,9 @@
-import base.Resource;
+import connectors.Junction;
 import connectors.Tjunction2to1;
 import equipments.Repository;
 import equipments.Sensor;
+import exceptions.ComponentConfigurationException;
+import exceptions.TooManyConnectorsException;
 import materials.SimpleFluid;
 
 import java.util.List;
@@ -11,12 +13,18 @@ public class Main {
         Repository one = new Repository(new SimpleFluid(100));
         Repository two = new Repository(new SimpleFluid(200));
         Sensor sensor = new Sensor();
-        Tjunction2to1 tjunction2to1 = new Tjunction2to1();
-        one.to(tjunction2to1);
-        two.to(tjunction2to1);
-        tjunction2to1.to(sensor);
+        Junction junction = Junction.of(2, 3);
 
-        tjunction2to1.run();
+        try {
+            junction.to(sensor);
+            one.to(junction);
+            two.to(junction);
+        } catch (ComponentConfigurationException e) {
+            e.printStackTrace();
+        }
+        one.run();
+        junction.run();
+        sensor.run();
 
         System.out.println(sensor.getFluid().getMassFlowRate());
     }

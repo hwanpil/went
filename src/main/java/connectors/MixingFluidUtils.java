@@ -13,4 +13,15 @@ public class MixingFluidUtils {
         }
         return new SimpleFluid(total);
     }
+
+    public static Fluid mix(List<Fluid> in) {
+        throw new UnsupportedOperationException("Not supported yet");
+    }
+
+    public static Fluid splitSimple(Fluid in, int outletsNum) {
+        double total = in.getMassFlowRate();
+        return new SimpleFluid(total/outletsNum);
+    }
+
+
 }
