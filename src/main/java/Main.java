@@ -1,17 +1,27 @@
 import connectors.Junction;
-import connectors.Tjunction2to1;
 import equipments.Repository;
 import equipments.Sensor;
 import exceptions.ComponentConfigurationException;
-import exceptions.TooManyConnectorsException;
-import materials.SimpleFluid;
+import materials.Chemical;
+import materials.CommonChemicals;
+import materials.Fluid;
+import materials.IdealSinglePhaseLiquid;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Repository one = new Repository(new SimpleFluid(100));
-        Repository two = new Repository(new SimpleFluid(200));
+        Map<Chemical, Double> components = new HashMap<>();
+        components.put(CommonChemicals.WATER, 1.0);
+        Fluid first = new IdealSinglePhaseLiquid()
+                .setTemperature(25)
+                .setDensity(1000)
+                .setMassFlowRate(100)
+                .setPressure(1)
+                .setComponents(components);
+        Repository one = new Repository(first);
+        Repository two = new Repository(first);
         Sensor sensor = new Sensor();
         Junction junction = Junction.of(2, 3);
 
@@ -26,6 +36,6 @@ public class Main {
         junction.run();
         sensor.run();
 
-        System.out.println(sensor.getFluid().getMassFlowRate());
+        System.out.println(sensor.getFluid());
     }
 }

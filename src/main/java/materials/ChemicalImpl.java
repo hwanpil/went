@@ -3,16 +3,10 @@ package materials;
 public class ChemicalImpl implements Chemical {
     String name;
     String cas;
-    double price;
 
-    public ChemicalImpl() {
-        this("test", "0-0-0", 100);
-    }
-
-    public ChemicalImpl(String name, String cas, double price) {
+    public ChemicalImpl(String name, String cas) {
         this.name = name;
         this.cas = cas;
-        this.price = price;
     }
 
     @Override
@@ -20,6 +14,7 @@ public class ChemicalImpl implements Chemical {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -29,16 +24,13 @@ public class ChemicalImpl implements Chemical {
         return cas;
     }
 
+    @Override
     public void setCas(String cas) {
         this.cas = cas;
     }
 
     @Override
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public String toString() {
+        return name.toUpperCase() + " with cas of " + cas;
     }
 }
