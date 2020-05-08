@@ -12,7 +12,10 @@ Due to the limitation of time and coding ability, this project is updated slowly
 so if you want something suitable for business or academic modelling, Aspen plus is always a better choice:)
 
 ## Some design notes
-+ Every component is only responsible for its up stream not for its down stream.
++ Four levels of abstraction from down to top: Chemicals->Fluids->Components->Factory
++ Every component is only responsible for its upstream not for its downstream, i.e., the run method for component
+is designed to pull results from upstream and do some calculation, but not to push results to next downstream components.
++ Use topological sorting (dfs) to determine the run order of components for the case of DAG (no loop)
 
 ## To-do list
 - [x] General idea of abstraction
@@ -30,6 +33,7 @@ Not finished.
 
 ## Hisotry
 + 2020-05-03 init the project and make plans!
++ 2020-05-08 finished the idea of abstraction part!
 
 ## License
 [![License][licensesvg]][license]
