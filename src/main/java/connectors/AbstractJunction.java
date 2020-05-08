@@ -4,19 +4,32 @@ import base.Component;
 import exceptions.TooManyConnectorsException;
 import materials.Fluid;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public abstract class AbstractJunction implements Junction {
     Component[] inlets;
     Component[] outlets;
     private Fluid transitional;
+    protected String id = UUID.randomUUID().toString();
     Fluid fluid;
     int countin = 0;
     int countout = 0;
 
     public AbstractJunction(){
         this(1, 1);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractJunction that = (AbstractJunction) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public AbstractJunction(int intletsNum, int outletsNum) {
@@ -89,6 +102,16 @@ public abstract class AbstractJunction implements Junction {
         distributeFluid();
     }
 
+    public List<Component> getNextComponents(){
+        List<Component> cmps = new LinkedList<>();
+        for (Component i : outlets) {
+            if (i!=null){
+                cmps.add(i);
+            }
+        }
+        return cmps;
+    }
+
     private Fluid mergeFluid() {
         List<Fluid> inFluids = new LinkedList<>();
         for (Component i : inlets) {
@@ -99,5 +122,9 @@ public abstract class AbstractJunction implements Junction {
 
     private void distributeFluid() {
         fluid = MixingFluidUtils.splitSimple(transitional, outlets.length);
+    }
+
+    public String getId(){
+        return this.id;
     }
 }

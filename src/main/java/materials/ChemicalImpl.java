@@ -31,6 +31,6 @@ public class ChemicalImpl implements Chemical {
 
     @Override
     public String toString() {
-        return name.toUpperCase() + " with cas of " + cas;
+        return name.toUpperCase() + " with the cas of " + cas;
     }
 }

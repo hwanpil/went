@@ -19,6 +19,6 @@ public class Repository extends AbstractComponent implements Component {
     }
 
     public void run() {
-        LOGGER.info("Repo is ready to use!");
+        LOGGER.info("Repo {} is ready to use!", this.id);
     }
 }

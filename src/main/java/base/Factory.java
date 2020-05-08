@@ -1,9 +1,11 @@
 package base;
 
-import java.util.List;
+import exceptions.TooManyConnectorsException;
+
+import java.util.Collection;
 
 public interface Factory {
     void run();
-    List<Component> getAllComponents();
-    void test();
+    Collection<Component> getAllComponents();
+    void addEdge(Component from, Component to) throws TooManyConnectorsException;
 }
