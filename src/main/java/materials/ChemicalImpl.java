@@ -20,6 +20,10 @@ public class ChemicalImpl implements Chemical {
         return name.toUpperCase() + " with the cas of " + cas;
     }
 
+    public Map<String, Value> getProperties(){
+        return properties;
+    }
+
     @Override
     public String getCAS() {
         return cas;
