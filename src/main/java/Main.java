@@ -17,7 +17,7 @@ public class Main {
         Factory f = new SimpleFactoryWithoutLoop();
 
         Map<Chemical, Double> components = new HashMap<>();
-        components.put(CommonChemicals.WATER, 1.0);
+        components.put(CommonChemicals.OCTANE, 1.0);
         Fluid first = new IdealSinglePhaseLiquid()
                 .setTemperature(25)
                 .setDensity(1000)

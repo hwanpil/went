@@ -1,5 +1,7 @@
 package materials;
 
+import java.io.IOException;
+
 public class CommonChemicals {
-    public final static Chemical WATER = new ChemicalImpl("water", "7732-18-5");
+    public static Chemical OCTANE = ChemicalFromChemeo.newInstance().pull("octane", "111-65-9");
 }

@@ -10,8 +10,7 @@ import java.util.*;
 
 public class SimpleFactoryWithoutLoop extends AbstractFactory implements Factory {
 
-    public List<Component> topoSort(){
-        int num = this.getSize();
+    private List<Component> topoSort(){
         List<Component> order = new ArrayList<>();
         Map<Component, Boolean> visited = new HashMap<>();
 

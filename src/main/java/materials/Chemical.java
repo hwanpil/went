@@ -1,8 +1,10 @@
 package materials;
 
+import base.Value;
+
 public interface Chemical {
-    String getName();
-    String getCas();
-    void setName(String name);
-    void setCas(String cas);
+    String getCAS();
+    Value getTc();
+    Value getPc();
+    Value getVc();
 }

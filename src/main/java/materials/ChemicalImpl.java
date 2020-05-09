@@ -1,36 +1,42 @@
 package materials;
 
+import base.Value;
+
+import java.util.Map;
+
 public class ChemicalImpl implements Chemical {
-    String name;
-    String cas;
+    private final String name;
+    private final String cas;
+    private Map<String, Value> properties;
 
-    public ChemicalImpl(String name, String cas) {
+    public ChemicalImpl(String name, String cas, Map<String, Value> properties) {
         this.name = name;
         this.cas = cas;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getCas() {
-        return cas;
-    }
-
-    @Override
-    public void setCas(String cas) {
-        this.cas = cas;
+        this.properties = properties;
     }
 
     @Override
     public String toString() {
         return name.toUpperCase() + " with the cas of " + cas;
+    }
+
+    @Override
+    public String getCAS() {
+        return cas;
+    }
+
+    @Override
+    public Value getTc() {
+        return properties.get("Critical Volume");
+    }
+
+    @Override
+    public Value getPc() {
+        return properties.get("Critical Pressure");
+    }
+
+    @Override
+    public Value getVc() {
+        return properties.get("Critical Temperature");
     }
 }
